@@ -1,0 +1,23 @@
+
+.fourzerofour {
+    color: #A67EB1;
+    font-size: 2000%;
+}
+
+@media screen and (max-width: 950px) {
+     .fourzerofour {
+        font-size: 1500%;
+     }
+}  
+    
+@media screen and (max-width: 650px) {
+    .fourzerofour {
+        font-size: 1000%;
+     }
+}
+    
+@media screen and (max-width: 480px) {
+    .fourzerofour {
+        font-size: 800%;
+     }    
+}
