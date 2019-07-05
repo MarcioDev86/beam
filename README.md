@@ -1,2 +1,2 @@
 # beam
-Beam remotes websote
+Beam remotes website
