@@ -1,13 +1,12 @@
-import React from 'react';
+import React from "react";
 import {
-    Carousel,
-    CarouselItem,
-    CarouselControl,
-    CarouselIndicators
-  } from 'reactstrap';
-import beamImg2 from '../../images/beamheroimage2.png';
-import beamImg3 from '../../images/beamheroimage3.png';
-
+  Carousel,
+  CarouselItem,
+  CarouselControl,
+  CarouselIndicators
+} from "reactstrap";
+import beamImg2 from "../../images/beamheroimage2.png";
+import beamImg3 from "../../images/beamheroimage3.png";
 
 const items = [
   {
@@ -39,13 +38,19 @@ class MyCarousel extends React.Component {
 
   next() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
+    const nextIndex =
+      this.state.activeIndex === items.length - 1
+        ? 0
+        : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
   }
 
   previous() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1;
+    const nextIndex =
+      this.state.activeIndex === 0
+        ? items.length - 1
+        : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   }
 
@@ -57,39 +62,51 @@ class MyCarousel extends React.Component {
   render() {
     const { activeIndex } = this.state;
 
-    const slides = items.map((item) => {
+    const slides = items.map(item => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
           key={item.src}
         >
-          <img src={item.src} alt={item.altText} className="caroImg"/>
-          
+          <img src={item.src} alt={item.altText} className="caroImg" />
         </CarouselItem>
       );
     });
 
     return (
-      <div style={{marginTop: "5%"}}>
-          <Carousel
+      <div style={{ marginTop: "5%" }}>
+        <Carousel
+          activeIndex={activeIndex}
+          next={this.next}
+          previous={this.previous}
+          ride="carousel"
+          autoPlay="true"
+          className="carousel"
+          interval={6000}
+        >
+          <CarouselIndicators
+            items={items}
             activeIndex={activeIndex}
-            next={this.next}
-            previous={this.previous}
-            ride="carousel"
-            autoPlay="true"
-            className="carousel"
-            interval={10000}>
-            <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
-            {slides}
-            <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
-            <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
-          </Carousel>
+            onClickHandler={this.goToIndex}
+          />
+          {slides}
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={this.previous}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={this.next}
+          />
+        </Carousel>
       </div>
     );
   }
 }
-  
+
 export default MyCarousel;
 
 /*

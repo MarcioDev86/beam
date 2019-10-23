@@ -1,12 +1,23 @@
 {
   "hosting": {
     "public": "build",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=960000"
+          }
+        ]
+      }
     ],
     "rewrites": [
+      {
+        "source": "/api",
+        "function": "app"
+      },
       {
         "source": "**",
         "destination": "/index.html"
